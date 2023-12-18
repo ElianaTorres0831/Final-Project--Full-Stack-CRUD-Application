@@ -23,8 +23,11 @@ const Campus = db.define("campus", {
   },
   imageUrl: {
     type: Sequelize.STRING,
-    defaultValue: "https://www.usnews.com/object/image/00000189-30bd-d6f6-a99b-ffbd1f840000/gettyimages-1478520911.jpg?update-time=1688739913761&size=responsive970.jpg",
-    allowNull: true
+  },
+
+  imageURL: {
+    type: Sequelize.TEXT('long'),
+    defaultValue: ""
   }
 });
 
