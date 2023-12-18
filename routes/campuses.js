@@ -68,12 +68,14 @@ router.delete('/:id', ash(async(req, res) => {
     }
   });
   res.status(200).json("Deleted a campus!");
+      .catch(err => noExtendLeft(err));
 }));
 
 /* ADD NEW CAMPUS */
 router.post('/', ash(async(req, res) => {
   let newCampus = await Campus.create(req.body);
   res.status(200).json(newCampus);  // Status code 200 OK - request succeeded
+  .catch(err => next(err));
 }));
 
 /* EDIT CAMPUS */
