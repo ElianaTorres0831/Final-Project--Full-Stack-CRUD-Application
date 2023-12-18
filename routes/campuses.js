@@ -26,27 +26,15 @@ const ash = require('express-async-handler');
 
 router.get('/campus/:id', async (req, res) => {
   try {
-    const { id } = req.params;
-    let oneCampus = await Campus.findCampus({
-      where: 
-      {
-        id: id
-      },
+    const single_campus = await Campus.findOne({
+      where: { id: req.params.id },
       include: [Student]
     });
-
-    res.status(200).json({
-      success: oneCampus
-    });
-  } catch (error) 
-  {
+    res.status(200).json({ success: single_campus });
+  } catch (error) {
     res.status(400).json(error);
   }
 });
-
-
-
-
 /* GET ALL CAMPUSES */
 router.get('/', ash(async(req, res) => {
   let campuses = await Campus.findAll({include: [Student]});  // Get all campuses and their associated students
